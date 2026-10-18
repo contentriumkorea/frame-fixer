@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420" role="img" aria-labelledby="title desc">
+  <title id="title">Choose your workflow</title>
+  <desc id="desc">Frame correction, upscaling, or frame correction followed by upscaling. Each workflow saves a separate output file.</desc>
+  <rect width="1000" height="420" rx="20" fill="#191919"/>
+  <g font-family="Segoe UI,Arial,sans-serif" fill="#deddd8">
+    <text x="40" y="59" font-size="25" font-weight="600">Choose your workflow.</text>
+    <text x="40" y="87" font-size="14" fill="#aaa9a3">One checkbox for each task. Separate output. Originals stay untouched.</text>
+    <g fill="#282828" stroke="#50504b">
+      <rect x="40" y="123" width="210" height="66" rx="12"/><rect x="40" y="215" width="210" height="66" rx="12"/><rect x="40" y="307" width="210" height="66" rx="12"/>
+      <rect x="302" y="123" width="380" height="66" rx="12"/><rect x="302" y="215" width="380" height="66" rx="12"/><rect x="302" y="307" width="170" height="66" rx="12"/><rect x="512" y="307" width="170" height="66" rx="12"/><rect x="734" y="123" width="226" height="250" rx="12"/>
+    </g>
+    <g font-size="16" text-anchor="middle">
+      <text x="145" y="162">FRAME ONLY</text><text x="145" y="254">UPSCALE ONLY</text><text x="145" y="346">FRAME + UPSCALE</text>
+      <text x="492" y="162">Frame correction</text><text x="492" y="254">AI upscale</text><text x="387" y="346">Frame correction</text><text x="597" y="346">AI upscale</text>
+      <text x="847" y="251" font-size="21">OUTPUT</text><text x="847" y="279" font-size="13" fill="#aaa9a3">New file / No overwrite</text>
+    </g>
+  </g>
+  <g fill="none" stroke="#aaa9a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M264 156h24m-6-6 6 6-6 6M264 248h24m-6-6 6 6-6 6M264 340h24m-6-6 6 6-6 6M484 340h16m-6-6 6 6-6 6M696 156h24m-6-6 6 6-6 6M696 248h24m-6-6 6 6-6 6M696 340h24m-6-6 6 6-6 6"/>
+  </g>
+</svg>
