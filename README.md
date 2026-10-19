@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="readme-assets/frame-fixer-cover.svg" alt="Frame Fixer — 모든 프레임은 그대로, 시간은 일정하게. AI 영상의 프레임 간격 보정과 원본 해상도 보존." width="100%">
+  <img src="readme-assets/frame-fixer-cover.svg?v=2.1.8" alt="Frame Fixer — 모든 프레임은 그대로, 시간은 일정하게. AI 영상의 프레임 간격 보정과 원본 해상도 보존." width="100%">
 </p>
 
 <h1 align="center">Frame Fixer</h1>
