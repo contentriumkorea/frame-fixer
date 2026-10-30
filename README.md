@@ -4,7 +4,7 @@
 
 <h1 align="center">Frame Fixer</h1>
 
-> **2.1.10 · 우클릭 변환과 저용량 변환** — 설치 직후 탐색기 메뉴가 갱신되지 않던 문제를 수정했습니다. 업스케일·DLSS는 포함되지 않습니다.
+> **2.1.12 · GPU 저용량 변환과 탐색기 보내기** — 저용량 재인코딩을 NVIDIA GPU 전용으로 개선했습니다. MP4를 우클릭한 뒤 **보내기 → Frame Fixer**에서 바로 변환할 수 있습니다. 업스케일·DLSS는 포함되지 않습니다.
 
 <p align="center">
   <strong>모든 프레임은 그대로. 시간은 더 일정하게.</strong><br>
@@ -64,7 +64,7 @@
   <img src="readme-assets/frame-fixer-workflow.svg" alt="처리 흐름 도식: 프레임 보정만, 업스케일만, 또는 프레임 보정 다음 업스케일. 모든 작업은 별도 출력 파일로 저장." width="100%">
 </p>
 
-위 도식과 아래 확대 예시는 **2.1.7 이전 버전**의 기능 설명입니다. **현재 2.1.10은 프레임 보정과 저용량 변환을 제공하며 업스케일 기능은 제공하지 않습니다.**
+위 도식과 아래 확대 예시는 **2.1.7 이전 버전**의 기능 설명입니다. **현재 2.1.12는 프레임 보정과 저용량 변환을 제공하며 업스케일 기능은 제공하지 않습니다.**
 
 FHD 최소를 선택했을 때의 출력 크기 예시:
 
@@ -106,17 +106,21 @@ FHD 최소를 선택했을 때의 출력 크기 예시:
 
 ## 탐색기에서 바로 변환
 
-MP4 파일을 우클릭하세요. Windows 11에서는 **추가 옵션 표시**에서 다음 메뉴를 찾을 수 있습니다.
+MP4 파일을 선택하고 **우클릭 → 보내기**에서 원하는 작업을 선택하세요. Windows 11에서는 **추가 옵션 표시 → 보내기**를 이용합니다.
 
-- **Frame Fixer · 프레임 보정 (23.976 fps)**
-- **Frame Fixer · 프레임 보정 (24 fps)**
-- **Frame Fixer · 저용량 변환 (290MB 이하)**
+- **Frame Fixer - 프레임 보정 (23.976 fps)**
+- **Frame Fixer - 프레임 보정 (24 fps)**
+- **Frame Fixer - 저용량 변환 (290MB)**
 
-앱을 먼저 열어 목록에 추가하지 않아도 별도 진행창에서 진행률·예상 남은 시간·취소·오류 상세를 확인할 수 있습니다. 실행 중인 앱이 있으면 같은 앱으로 전달하며 메인 작업 목록은 변경하지 않습니다. 결과는 원본 폴더에 저장하고 기존 파일은 덮어쓰지 않습니다.
+여러 파일을 선택해 한 번에 보낼 수 있습니다. 앱을 먼저 열어 목록에 추가하지 않아도 별도 진행창에서 진행률·예상 남은 시간·취소·오류 상세를 확인합니다. 실행 중인 앱이 있으면 같은 앱으로 전달하며 메인 작업 목록은 변경하지 않습니다. 결과는 원본 폴더에 저장하고 기존 파일은 덮어쓰지 않습니다.
 
-**저용량 변환은 원본 해상도·모든 프레임·재생 시간을 유지하고 비트레이트를 낮추는 손실 압축입니다.** 전체 파일이 290,000,000바이트 이하인지 검증하며, 필요하면 더 낮은 비트레이트로 다시 인코딩합니다. 제한을 달성할 수 없는 입력은 오류로 안내하고, 영상을 자르거나 초과 결과를 완료로 저장하지 않습니다. 활성화된 원본이 이미 제한 이하이면 그대로 복사합니다. 메인 화면의 **저용량 변환** 버튼으로도 실행할 수 있습니다.
+일부 탐색기 환경에서는 바로 표시되는 Frame Fixer 변환 메뉴가 누락될 수 있습니다. 이 경우 위의 **보내기** 경로를 이용하세요. 보내기 항목 3개의 실제 표시와 변환 실행을 확인했습니다. 설치·업데이트 시 바로가기를 준비하고 제거 시 정리하며, 기본 앱 연결을 바꾸거나 탐색기를 강제로 종료하지 않습니다.
 
-여러 파일은 순서대로 처리합니다. Windows 기존 메뉴 방식의 기본 15개 선택 제한보다 많은 파일은 앱에서 선택하세요. 설치·제거 시 메뉴 정보를 갱신하며 탐색기를 강제로 종료하지 않습니다.
+**저용량 변환은 원본 해상도·모든 프레임·재생 시간을 유지하고 비트레이트를 낮추는 손실 압축입니다.** 재인코딩은 호환되는 NVIDIA GPU·드라이버의 NVENC를 사용하며, GPU 처리 실패 시 CPU 영상 인코딩으로 전환하지 않고 오류를 안내합니다. H.264 8비트 4:2:0 MP4를 지원합니다.
+
+전체 파일이 **290,000,000바이트 이하**인지 검증하며, 필요하면 더 낮은 비트레이트로 다시 인코딩합니다. 제한을 달성할 수 없는 입력은 오류로 안내하고, 영상을 자르거나 초과 결과를 완료로 저장하지 않습니다. 활성화된 원본이 이미 제한 이하이면 재인코딩 없이 그대로 복사합니다. 메인 화면의 **저용량 변환** 버튼으로도 실행할 수 있습니다.
+
+남은 시간은 실제 처리 속도가 측정된 뒤 표시하며, 준비 시간이나 재시도로 달라질 수 있습니다. 보내기는 한 번에 최대 256개 파일을 지원하고 순서대로 처리합니다. 직접 표시되는 기존 우클릭 메뉴는 Windows의 선택 개수 제한을 받을 수 있습니다.
 
 ## 적용 범위와 제한
 
@@ -144,7 +148,7 @@ Windows 10/11 x64 및 .NET Framework 4.8이 필요합니다. 다른 운영체제
 
 ### 현재 배포와 확인 범위
 
-현재 정식 버전은 **2.1.10**입니다. 우클릭 프레임 보정·저용량 변환을 추가하고 설치 직후 탐색기 메뉴가 갱신되지 않던 문제를 수정했습니다. 업스케일 기능과 AI 엔진·모델 준비는 포함하지 않습니다. 프레임 보정·구간 미리보기·일괄 변환·진행률·완료음·Activation·업데이트는 유지합니다. 기존 영상과 모델 캐시는 삭제하지 않습니다. DLSS는 이 버전에 포함되지 않습니다.
+현재 정식 버전은 **2.1.12**입니다. 저용량 변환의 반복적인 디코딩 검사를 줄이고 NVIDIA GPU 전용 인코딩과 실제 처리 속도에 따른 남은 시간 표시를 적용했습니다. 탐색기 **보내기**에서 여러 영상을 바로 변환할 수 있습니다. 업스케일 기능과 AI 엔진·모델 준비는 포함하지 않습니다. 프레임 보정·구간 미리보기·일괄 변환·진행률·완료음·Activation·업데이트는 유지합니다. 기존 영상과 모델 캐시는 삭제하지 않습니다. DLSS는 이 버전에 포함되지 않습니다.
 
 설치기의 최신 버전 확인·다운로드 검증과 Windows 설치 교체, 바로가기·제거 등록, 앱 시작·종료를 확인했습니다. 본문의 앱 화면은 UI 자동 검증에서 캡처했습니다. 모든 PC의 설치 성공이나 처리 속도를 보장하는 의미는 아닙니다.
 
@@ -165,9 +169,11 @@ Windows 10/11 x64 및 .NET Framework 4.8이 필요합니다. 다른 운영체제
 <details>
 <summary><strong>English overview</strong></summary>
 
-Frame Fixer is a Windows 10/11 x64 app for AI-generated video. It retimes every original frame to a fixed cadence without dropping, duplicating or interpolating frames. Version 2.1.8 provides frame correction only; AI upscaling is not included.
+Frame Fixer is a Windows 10/11 x64 app for AI-generated video. It retimes every original frame to a fixed cadence without dropping, duplicating or interpolating frames. Version 2.1.12 includes frame correction and size-limited compression; AI upscaling is not included.
 
 Download **FrameFixer-Setup.exe** above. The lightweight online installer retrieves and verifies the latest stable setup. Existing valid video tools are reused. No AI runtime or model download is required. Frame correction works without a GPU. Supported input: MP4 with 8-bit SDR H.264 video and AAC audio, or no audio.
+
+Explorer → Send to offers frame correction and compression for selected MP4 files. Compression preserves resolution and frame timing, lowers bitrate, and verifies a maximum total file size of 290,000,000 bytes. Re-encoding requires compatible NVIDIA NVENC hardware and drivers; it does not fall back to CPU video encoding. Activated inputs already below the limit are copied without re-encoding.
 
 All features are available without activation, with a centered 20%-opacity Contentrium watermark. Activation removes the watermark from future renders. Lossless output can be much larger and may not open in every editor. Current installers are not Windows publisher-code-signed. Media and diagnostics are not automatically uploaded.
 
